@@ -3,3 +3,4 @@ def main_menu(date):
 
 main_menu("today")
 main_menu()
+main_menu()
