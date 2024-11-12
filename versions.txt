@@ -2,5 +2,3 @@ Idea is to create a finance tracker using python
 For now write code that inputs date, category between expense and income and a description
 Then to be written or appended into a txt file
 
-test
-test
