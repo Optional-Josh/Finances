@@ -2,15 +2,18 @@ Idea is to create a finance tracker using python
 For now write code that inputs date, category between expense and income and a description
 Then to be written or appended into a txt file
 
-1.0 
+0.1
 - created details.py which holds functions that validates user input regarding its finance history
 - created file_manipulation for the details or logs be placed into a txt file
 - main.py invokes functions from details and file_manipulation as well as compile all the functionalities
-2.0
+0.2
 - added comments to describe each functions
 - function that consolidates all function for user inputs and adds into a variable
 - function that acts as a main menu, serving as the hub asking for user options
 - removed string in amount
 - ensured to add new line for each record into file
 - no longer breaks after a record is inputted, only quits if user quits via main menu
+0.3
+- transferred functions into a class for cleaner code
+- removed return function from class methods and instead updated class attributes within the class method itself
 
