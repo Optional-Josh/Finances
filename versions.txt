@@ -16,4 +16,10 @@ Then to be written or appended into a txt file
 0.3
 - transferred functions into a class for cleaner code
 - removed return function from class methods and instead updated class attributes within the class method itself
-
+0.4
+- used json or python dictionaries instead of plain text string to compile date, category, description and amount
+- writes compiled dictionary from record class into json file and reads it as well
+- no longer used class attribute compiled as a dictionary, instead created to_dict method which returns a dictionary of compiled records. However,
+a variable has to be made to create an object, and then call the variable again with class method to_dict to convert compiled user inputs into dictionary
+- added class compiler to hold all functions in gathering and validating user inputs
+- added to_dict method from record class which is necessary to be called and stored in another variable, separate from the variable upon creating the object

@@ -1,3 +1,4 @@
+from compiler import Compiler
 from record import Record
 from file_manipulation import write_into_file, read_file
 
@@ -6,10 +7,15 @@ from file_manipulation import write_into_file, read_file
 def main_menu():
     while True:
         user_input = input("Type y to enter a record for your finances or q to quit the menu: ")
+
         if user_input.lower() == "y":
-            # record = record_log()
-            write_into_file()
+            compiler = Compiler()
+            record = Record(compiler.date, compiler.category, compiler.description, compiler.amount)
+            record_dict = record.to_dict()
+            write_into_file(record_dict)
             read_file()
+
+
         elif user_input.lower() == "q":
             break
         else:
@@ -17,9 +23,6 @@ def main_menu():
 
 # serves as the main python file, which will run the other python modules
 if __name__ == "__main__":
-    record_one = Record()
-    record_two = Record()
-    record_one
-    record_two
+    main_menu()
 
     
