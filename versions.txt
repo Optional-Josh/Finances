@@ -23,3 +23,6 @@ a variable has to be made to create an object, and then call the variable again 
 - added function that will append json data from record class method to_dict into json file alongside any existing data
 - changed formatting from class record, to_dict method into having date as a key which will have remaining dictionaries be inserted into a list
 - changed read function for json file to a readable format
+0.6
+- added functionality to convert json data into a dataframe
+- separated portion in main menu to allow user to read contents of file, instead of automatically reading whenever entering a record

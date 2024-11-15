@@ -8,7 +8,7 @@ import time
 # function that asks for user choices and serves as a main menu
 def main_menu():
     while True:
-        user_input = input("Type y to enter a record for your finances or q to quit the menu: ")
+        user_input = input("Type y to enter a record, r to read contents of json file, or q to quit the menu: ")
 
         if user_input.lower() == "y":
             # use class that gathers and validates user input
@@ -25,13 +25,13 @@ def main_menu():
             # delay final execution for added effect
             time.sleep(3)
 
-            # function to read contents of json
-            read_file()
-
-
         elif user_input.lower() == "q":
             break
+        elif user_input.lower() == "r":
+            # function to read contents of json
+            read_file()
         else:
+            print("You did not input from the given choices")
             print("Please input from choices given only")
 
 # serves as the main python file, which will run the other python modules
