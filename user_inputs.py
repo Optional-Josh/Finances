@@ -1,13 +1,12 @@
 import time
 
-class Compiler:
+class User_Inputs:
     def __init__(self):
         self.date = None
         self.category = None
         self.description = None
         self.amount = None
         
-
         # invoking class methods
         self.initiate_get_inputs()
 
@@ -64,8 +63,3 @@ class Compiler:
     # functions that will gather all user inputted date and compile it to be returned
     def return_data(self):
         return self.date, self.category, self.description, self.amount
-
-# running codes section
-if __name__ == "__main__":
-    compile = Compiler()
-    print(compile.date, compile.category, compile.description, compile.amount)

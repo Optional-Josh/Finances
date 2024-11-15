@@ -1,7 +1,3 @@
-Idea is to create a finance tracker using python
-For now write code that inputs date, category between expense and income and a description
-Then to be written or appended into a txt file
-
 0.1
 - created details.py which holds functions that validates user input regarding its finance history
 - created file_manipulation for the details or logs be placed into a txt file
@@ -23,3 +19,7 @@ Then to be written or appended into a txt file
 a variable has to be made to create an object, and then call the variable again with class method to_dict to convert compiled user inputs into dictionary
 - added class compiler to hold all functions in gathering and validating user inputs
 - added to_dict method from record class which is necessary to be called and stored in another variable, separate from the variable upon creating the object
+0.5
+- added function that will append json data from record class method to_dict into json file alongside any existing data
+- changed formatting from class record, to_dict method into having date as a key which will have remaining dictionaries be inserted into a list
+- changed read function for json file to a readable format

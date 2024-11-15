@@ -9,9 +9,11 @@ class Record:
     # function that converts instance attributes into dictionary
     def to_dict(self):
         return {
-            "date": self.date,
-            "category": self.category,
-            "description": self.description,
-            "amount": self.amount
+            self.date: [
+                {
+                "category": self.category,
+                "description": self.description,
+                "amount": self.amount
+                }
+            ]
         }
-
