@@ -9,7 +9,8 @@ def write_into_file(content):
 def read_file():
     with open('money.json', 'r') as read_file:
         data = json.load(read_file)
-        print(json.dumps(data, indent=2))
+        formatted_data = (json.dumps(data, indent=2))
+    return formatted_data
 
 # function that reads all contents of json, gathers and compiles it
 # then its parameters will be the compiled records which will be compiled with any existing data

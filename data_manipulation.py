@@ -1,19 +1,16 @@
 import pandas as pd
 import json
 
-# function that reads the contents of a txt file
-def get_data_json():
+def dataframes():
+
     with open('money.json', 'r') as read_file:
         data = json.load(read_file)
 
-        return data
-
-def dataframes(placeholder):
     # create a list within the function
     records = []
 
     # iterates through the list containing dictionaries
-    for dict in placeholder:
+    for dict in data:
         # iterates through the key value pairs of each dictionary
         for date, dicts in dict.items():
             # iterates through the list containing dictionaries
@@ -29,12 +26,9 @@ def dataframes(placeholder):
                 records.append(record)
     # variable that stores a data frame containing the list of dicionaries
     df = pd.DataFrame(records)
+    string_df = df.to_string(index=False)
 
     # returns the variable to be used outside the function
-    return df
+    return string_df
 
-if __name__ == "__main__":
-    data = get_data_json()
-    test = dataframes(data)
-    print(test)
     

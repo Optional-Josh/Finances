@@ -1,41 +1,19 @@
-from user_inputs import User_Inputs
-from record import Record
-from file_manipulation import read_file, append_dict_to_json
-import time
+from anchor_gui import Top_Frame, Bottom_Frame
+import customtkinter as ctk
 
 
+class Main_Window(ctk.CTk):
+    def __init__(self):
+        super().__init__()
+        self.title("Finance Tracker") # set window title name
+        self.geometry("800x800") # set window width and height
 
-# function that asks for user choices and serves as a main menu
-def main_menu():
-    while True:
-        user_input = input("Type y to enter a record, r to read contents of json file, or q to quit the menu: ")
+        # calling other frame objects
+        self.top_frame = Top_Frame(self) # create top frame object into window
+        self.bottom_frame = Bottom_Frame(self, self.top_frame) # create bottom frame object into window with top frame as parameter
 
-        if user_input.lower() == "y":
-            # use class that gathers and validates user input
-            compiler = User_Inputs()
 
-            # another variable to store gathered inputs into another class which compiles it
-            record = Record(compiler.date, compiler.category, compiler.description, compiler.amount)
-            record_dict = record.to_dict() # class method that returns a dictionary object
-            
-            # function that deals will append the data into json file
-            append_dict_to_json(record_dict)
-            print("Your inputs have been saved into the json file")
-
-            # delay final execution for added effect
-            time.sleep(3)
-
-        elif user_input.lower() == "q":
-            break
-        elif user_input.lower() == "r":
-            # function to read contents of json
-            read_file()
-        else:
-            print("You did not input from the given choices")
-            print("Please input from choices given only")
-
-# serves as the main python file, which will run the other python modules
 if __name__ == "__main__":
-    main_menu()
-
-    
+    # create an object instance
+    window = Main_Window()
+    window.mainloop()

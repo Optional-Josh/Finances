@@ -26,3 +26,11 @@ a variable has to be made to create an object, and then call the variable again 
 0.6
 - added functionality to convert json data into a dataframe
 - separated portion in main menu to allow user to read contents of file, instead of automatically reading whenever entering a record
+0.7
+- added data manipulation module functions into main menu of main module
+0.8
+- added a graphical user interface (gui) using customtkinter
+- converted main menu from main python module into (gui)
+- two classes of frames which are then instantiated within main window
+- removed certain functions no longer needed from gui implementation
+- removed user inputs module and implemented its method into bottom frame class itself
