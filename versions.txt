@@ -35,3 +35,5 @@ a variable has to be made to create an object, and then call the variable again 
 - removed user inputs module and implemented its method into bottom frame class itself
 0.8
 - customized foreground and text colors and disabled colors for some buttons
+0.9
+- improved label updates upon adding records and saving into file

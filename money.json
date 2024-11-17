@@ -1,0 +1,101 @@
+[
+  {
+    "11-09-2024": [
+      {
+        "category": "Expenses",
+        "description": "Del monte",
+        "amount": 184
+      }
+    ]
+  },
+  {
+    "11-08-2024": [
+      {
+        "category": "Expenses",
+        "description": "Alps",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "11-08-2024": [
+      {
+        "category": "Expenses",
+        "description": "Alps",
+        "amount": 150
+      }
+    ]
+  },
+  {
+    "11-11-2024": [
+      {
+        "category": "Expenses",
+        "description": "Internet",
+        "amount": 999
+      }
+    ]
+  },
+  {
+    "07-11-2024": [
+      {
+        "category": "Expenses",
+        "description": "Alfamart",
+        "amount": 28
+      }
+    ]
+  },
+  {
+    "11-07-2024": [
+      {
+        "category": "Expenses",
+        "description": "Water bill",
+        "amount": 354
+      }
+    ]
+  },
+  {
+    "11-09-2024": [
+      {
+        "category": "Expenses",
+        "description": "7-eleven",
+        "amount": 69
+      }
+    ]
+  },
+  {
+    "10-27-2024": [
+      {
+        "category": "Expenses",
+        "description": "Alfamart",
+        "amount": 520
+      }
+    ]
+  },
+  {
+    "10-29-2024": [
+      {
+        "category": "Expenses",
+        "description": "Batrasco",
+        "amount": 15
+      }
+    ]
+  },
+  {
+    "11-07-2024": [
+      {
+        "category": "Expenses",
+        "description": "Batelec ii",
+        "amount": 2172
+      }
+    ]
+  },
+  {
+    "11-07-2024": [
+      {
+        "category": "Expenses",
+        "description": "Bdo",
+        "amount": 20000
+      }
+    ]
+  }
+]

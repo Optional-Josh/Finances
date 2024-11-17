@@ -31,4 +31,4 @@ def append_dict_to_json(dict):
 
     # write updated list back to file
     with open("money.json", "w") as actual_file:
-        json.dump(data, actual_file, indent=4)
+        json.dump(data, actual_file, indent=2)

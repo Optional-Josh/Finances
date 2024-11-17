@@ -81,10 +81,10 @@ class Bottom_Frame(ctk.CTkFrame):
         # variables starting with entry are entry boxes
         # validate keyword and command in entry amount ensures that inputs are numbers only
         # variables starting with add are buttons that initiate the overwriting of object attributes and are partnered with entry boxes
-        self.entry_date = ctk.CTkEntry(self.second_container, state="disabled", placeholder_text="Records", width=175)
-        self.entry_category = ctk.CTkEntry(self.second_container, state="disabled", placeholder_text="Records", width=175)
-        self.entry_description = ctk.CTkEntry(self.second_container, state="disabled", placeholder_text="Records", width=175)
-        self.entry_amount = ctk.CTkEntry(self.second_container, state="disabled", placeholder_text="Records", width=175, validate="key", validatecommand=(self.register(self.validate_input), "%P"))
+        self.entry_date = ctk.CTkEntry(self.second_container, state="disabled", width=175)
+        self.entry_category = ctk.CTkEntry(self.second_container, state="disabled", width=175)
+        self.entry_description = ctk.CTkEntry(self.second_container, state="disabled", width=175)
+        self.entry_amount = ctk.CTkEntry(self.second_container, state="disabled", width=175, validate="key", validatecommand=(self.register(self.validate_input), "%P"))
 
         self.add_date = ctk.CTkButton(self.second_container, state="disabled", text="Add Date", command=self.add_date_input)
         self.add_category = ctk.CTkButton(self.second_container, state="disabled", text="Add Category", command=self.add_category_input)
@@ -106,16 +106,16 @@ class Bottom_Frame(ctk.CTkFrame):
         ctk.CTkLabel(self.second_container, text="Joshua Caguimbal").place(relx=0.99, rely=1, anchor="se")
 
         # place method for widgets
-        self.entry_date.place(relx=0.15, rely=0.30)
-        self.entry_category.place(relx=0.15, rely=0.40)
-        self.entry_description.place(relx=0.15, rely=0.50)
-        self.entry_amount.place(relx=0.15, rely=0.60)
+        self.entry_date.place(relx=0.15, rely=0.20)
+        self.entry_category.place(relx=0.15, rely=0.30)
+        self.entry_description.place(relx=0.15, rely=0.40)
+        self.entry_amount.place(relx=0.15, rely=0.50)
 
-        self.add_date.place(relx=0.60, rely=0.30)
-        self.add_category.place(relx=0.60, rely=0.40)
-        self.add_description.place(relx=0.60, rely=0.50)
-        self.add_amount.place(relx=0.60, rely=0.60)
-        self.submit_records.place(relx=0.30, rely=0.80)
+        self.add_date.place(relx=0.60, rely=0.20)
+        self.add_category.place(relx=0.60, rely=0.30)
+        self.add_description.place(relx=0.60, rely=0.40)
+        self.add_amount.place(relx=0.60, rely=0.50)
+        self.submit_records.place(relx=0.30, rely=0.70)
 
         # pack frame containers
         self.first_container.pack(side="left", expand=True, fill="both")
@@ -130,7 +130,7 @@ class Bottom_Frame(ctk.CTkFrame):
         self.button_record.configure(state="disabled")
 
         # place "Add Record Label" indicating you can add record now
-        self.record_label.place(relx=0.15, rely=0.20)
+        self.record_label.place(relx=0.15, rely=0.10)
 
         # change state of widgets from disabled to normal
         self.entry_date.configure(state="normal")
@@ -177,7 +177,7 @@ class Bottom_Frame(ctk.CTkFrame):
             self.date = time.strftime("%m-%d-%Y", time.localtime())
 
             # print to top label
-            self.top_frame.update_label(f"Date: {self.date} has been recorded")
+            self.top_frame.update_label(f"Date: {self.date} is recorded")
 
             self.entry_date.configure(state="disabled")
             self.add_date.configure(state="disabled")
@@ -186,7 +186,7 @@ class Bottom_Frame(ctk.CTkFrame):
                 validated_date = datetime.strptime(entry_date, "%m-%d-%Y")
                 self.date = validated_date.strftime("%m-%d-%Y")
 
-                self.top_frame.update_label(f"Date: {self.date} has been recorded")
+                self.top_frame.update_label(f"Date: {self.date} is recorded")
 
                 self.entry_date.configure(state="disabled")
                 self.add_date.configure(state="disabled")
@@ -200,7 +200,7 @@ class Bottom_Frame(ctk.CTkFrame):
             self.category = 'Expenses'
 
             # print to top label
-            self.top_frame.update_label("Category has been set to Expenses")
+            self.top_frame.update_label(f"Category: {self.category} is recorded")
 
             self.entry_category.configure(state="disabled")
             self.add_category.configure(state="disabled")
@@ -208,12 +208,12 @@ class Bottom_Frame(ctk.CTkFrame):
             self.category = 'Income'
 
             # print to top label
-            self.top_frame.update_label("Category has been set to income")
+            self.top_frame.update_label(f"Category: {self.category} is recorded")
 
             self.entry_category.configure(state="disabled")
             self.add_category.configure(state="disabled")
         else:
-            self.top_frame.update_label("You did not select from the choices above")
+            self.top_frame.update_label("Please input e for expense or i for income")
 
     # entry and button for description records setting and validation
     def add_description_input(self):
@@ -222,12 +222,12 @@ class Bottom_Frame(ctk.CTkFrame):
             self.description = entry_description.capitalize()
 
             # print to top label
-            self.top_frame.update_label(f"Description: {self.description} has been recorded")
+            self.top_frame.update_label(f"Description: {self.description} is recorded")
 
             self.entry_description.configure(state="disabled")
             self.add_description.configure(state="disabled")
         else:
-            self.top_frame.update_label("Description cannot be empty. Please provide a description")
+            self.top_frame.update_label("Please provide a description, as description can't be empty")
 
     # entry and button for amount records setting and validation
     def add_amount_input(self):
@@ -240,7 +240,7 @@ class Bottom_Frame(ctk.CTkFrame):
             self.amount = number_entry_amount
 
             # print to top label
-            self.top_frame.update_label(f"Amount: {self.amount} has been recorded")
+            self.top_frame.update_label(f"Amount: {self.amount} is recorded")
 
             self.entry_amount.configure(state="disabled")
             self.add_amount.configure(state="disabled")
@@ -258,7 +258,8 @@ class Bottom_Frame(ctk.CTkFrame):
 
         append_dict_to_json(record_dict)
         # print to top label
-        self.top_frame.update_label("Your records have been saved to a JSON file")
+        self.top_frame.update_label(
+            f"Records have been saved to JSON file\nDetails of the record:\nDate: {self.date}\nCategory: {self.category}\nDescription: {self.description}\nAmount: {self.amount}")
 
         self.submit_records.configure(state="disabled")
 
