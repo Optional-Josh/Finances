@@ -37,3 +37,7 @@ a variable has to be made to create an object, and then call the variable again 
 - customized foreground and text colors and disabled colors for some buttons
 0.9
 - improved label updates upon adding records and saving into file
+0.10
+- changed theeme color to orange
+- cleaned code and added more comments
+- added icon for window

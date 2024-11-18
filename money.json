@@ -92,9 +92,18 @@
   {
     "11-07-2024": [
       {
-        "category": "Expenses",
-        "description": "Bdo",
+        "category": "Income",
+        "description": "BDO",
         "amount": 20000
+      }
+    ]
+  },
+  {
+    "11-11-2024": [
+      {
+        "category": "Income",
+        "description": "Salary",
+        "amount": 3200
       }
     ]
   }

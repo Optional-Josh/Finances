@@ -4,7 +4,7 @@ import customtkinter as ctk
 from datetime import datetime
 from record import Record
 from file_manipulation import append_dict_to_json
-from data_manipulation import dataframes
+from data_manipulation import dataframes, graph_data
 
 
 class Top_Frame(ctk.CTkFrame):
@@ -57,17 +57,17 @@ class Bottom_Frame(ctk.CTkFrame):
 
         self.button_record = ctk.CTkButton(first_button_container, text="Add a Record", command=self.add_record)
         self.button_read = ctk.CTkButton(first_button_container, text="Read Records", command=self.read_json_content)
-        self.button_data = ctk.CTkButton(first_button_container, text="Data Analytics")
+        self.button_data = ctk.CTkButton(first_button_container, text="Data Analytics", command=graph_data)
         self.button_quit = ctk.CTkButton(first_button_container, text="Quit", command=self.quit_app)
 
         # customization by configuration of widgets for first container
-        self.first_container.configure(fg_color="#3a5a40")
+        self.first_container.configure(fg_color="#FF8A08")
         first_button_container.configure(fg_color="transparent")
 
-        self.button_record.configure(fg_color="#003049", hover_color="#f77f00", text_color_disabled="#f07167")
-        self.button_read.configure(fg_color="#003049", hover_color="#f77f00", text_color_disabled="#f07167")
-        self.button_data.configure(fg_color="#003049", hover_color="#f77f00", text_color_disabled="#f07167")
-        self.button_quit.configure(fg_color="#003049", hover_color="#f77f00", text_color_disabled="#f07167")
+        self.button_record.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
+        self.button_read.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
+        self.button_data.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
+        self.button_quit.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
 
         # packing widgets of first container
         self.button_record.pack(pady=5)
@@ -93,13 +93,13 @@ class Bottom_Frame(ctk.CTkFrame):
         self.submit_records = ctk.CTkButton(self.second_container, state="disabled", text="Submit Records and Save to JSON", command=self.return_records)
 
         # customization by configuration of widgets for second container
-        self.second_container.configure(fg_color="#588157")
+        self.second_container.configure(fg_color="#FF6500")
 
-        self.add_date.configure(fg_color="#003049", hover_color="#f77f00", text_color_disabled="#f07167")
-        self.add_category.configure(fg_color="#003049", hover_color="#f77f00", text_color_disabled="#f07167")
-        self.add_description.configure(fg_color="#003049", hover_color="#f77f00", text_color_disabled="#f07167")
-        self.add_amount.configure(fg_color="#003049", hover_color="#f77f00", text_color_disabled="#f07167")
-        self.submit_records.configure(fg_color="#003049", hover_color="#f77f00", text_color_disabled="#f07167")
+        self.add_date.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
+        self.add_category.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
+        self.add_description.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
+        self.add_amount.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
+        self.submit_records.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
 
         # pack widgets of second container
         self.record_label = ctk.CTkLabel(self.second_container, text="Add a Record", font=("Arial",20,"bold"))
@@ -219,7 +219,7 @@ class Bottom_Frame(ctk.CTkFrame):
     def add_description_input(self):
         entry_description = self.entry_description.get()
         if entry_description.strip():
-            self.description = entry_description.capitalize()
+            self.description = entry_description
 
             # print to top label
             self.top_frame.update_label(f"Description: {self.description} is recorded")
