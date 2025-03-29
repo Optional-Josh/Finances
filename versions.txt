@@ -41,3 +41,8 @@ a variable has to be made to create an object, and then call the variable again 
 - changed theeme color to orange
 - cleaned code and added more comments
 - added icon for window
+0.11
+- commented out top frame
+- commented and removed top frame as reference or parameter for class bottom frame
+- commented out second/right container for adding records frame
+- separated second container into new module for toplevel implementation (WIP)

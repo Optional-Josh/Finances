@@ -1,99 +1,33 @@
-import time
-import sys
 import customtkinter as ctk
+import time
 from datetime import datetime
 from record import Record
 from file_manipulation import append_dict_to_json
 from data_manipulation import dataframes, graph_data
 
-
-class Top_Frame(ctk.CTkFrame):
-    def __init__(self, parent):
-        super().__init__(parent) # inherits methods from ctk.CTkFrame and sets the master for the frame from parent parameter
-
-        # creating widgets
-        self.label = ctk.CTkLabel(self, text="Welcome", wraplength=700, justify="center", anchor="center", font=("Courier", 20), height=500, width=500)
-        self.label.pack(expand=True, fill="both")
-
-        # configure customization
-        self.configure(fg_color="#344e41")
-        self.configure(fg_color="transparent")
-
-        # pack frame itself
-        self.pack(side="top", expand=True, fill="both")
-
-    # class method that changes content of frame in this class, will be called if needed from other classes
-    def update_label(self, content):
-        self.label.configure(text = content)
-
-class Bottom_Frame(ctk.CTkFrame):
-    def __init__(self, parent, top_frame): # alongside parent as parameter, top_frame is a parameter to reference it, whenever instantiated
-        super().__init__(parent) # inherits methods from ctk.CTkFrame and sets the master for the frame from parent parameter
-
-        # object attributes which will be overwritten whenever adding a record
-        self.date = None
-        self.category = None
-        self.description = None
-        self.amount = None
-
-        # reference other classes
-        self.top_frame = top_frame
-
-        # invoke class method to create widgets
-        self.bottom_frame_widgets()
-
-        # pack frame itself
-        self.pack(side="top", expand=True, fill="both")
-
-    # function to compile widget and frame creations
-    def bottom_frame_widgets(self):
-        # frame container for buttons
-        self.first_container = ctk.CTkFrame(self)
-        self.second_container = ctk.CTkFrame(self)
-
-        # creating widgets for first/left container
-        first_button_container = ctk.CTkFrame(self.first_container)
-        ctk.CTkLabel(first_button_container, text="Main Menu", anchor="s", fg_color="transparent", font=("Arial",20,"bold")).pack(pady=10, ipady=5)
-
-        self.button_record = ctk.CTkButton(first_button_container, text="Add a Record", command=self.add_record)
-        self.button_read = ctk.CTkButton(first_button_container, text="Read Records", command=self.read_json_content)
-        self.button_data = ctk.CTkButton(first_button_container, text="Data Analytics", command=graph_data)
-        self.button_quit = ctk.CTkButton(first_button_container, text="Quit", command=self.quit_app)
-
-        # customization by configuration of widgets for first container
-        self.first_container.configure(fg_color="#FF8A08")
-        first_button_container.configure(fg_color="transparent")
-
-        self.button_record.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
-        self.button_read.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
-        self.button_data.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
-        self.button_quit.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
-
-        # packing widgets of first container
-        self.button_record.pack(pady=5)
-        self.button_read.pack(pady=5)
-        self.button_data.pack(pady=5)
-        self.button_quit.pack(pady=5)
-
-        first_button_container.pack()
+class Add_Records(ctk.CTkToplevel):
+    def __init__(self):
+        super().__init__()
+        self.title('Extra Window')
+        self.geometry('300x400')
 
         # creating widgets for second/right container
         # variables starting with entry are entry boxes
         # validate keyword and command in entry amount ensures that inputs are numbers only
         # variables starting with add are buttons that initiate the overwriting of object attributes and are partnered with entry boxes
-        self.entry_date = ctk.CTkEntry(self.second_container, state="disabled", width=175)
-        self.entry_category = ctk.CTkEntry(self.second_container, state="disabled", width=175)
-        self.entry_description = ctk.CTkEntry(self.second_container, state="disabled", width=175)
-        self.entry_amount = ctk.CTkEntry(self.second_container, state="disabled", width=175, validate="key", validatecommand=(self.register(self.validate_input), "%P"))
+        self.entry_date = ctk.CTkEntry(self, state="disabled", width=175)
+        self.entry_category = ctk.CTkEntry(self, state="disabled", width=175)
+        self.entry_description = ctk.CTkEntry(self, state="disabled", width=175)
+        self.entry_amount = ctk.CTkEntry(self, state="disabled", width=175, validate="key", validatecommand=(self.register(self.validate_input), "%P"))
 
-        self.add_date = ctk.CTkButton(self.second_container, state="disabled", text="Add Date", command=self.add_date_input)
-        self.add_category = ctk.CTkButton(self.second_container, state="disabled", text="Add Category", command=self.add_category_input)
-        self.add_description = ctk.CTkButton(self.second_container, state="disabled", text="Add Description", command=self.add_description_input)
-        self.add_amount = ctk.CTkButton(self.second_container, state="disabled", text="Add Amount", command=self.add_amount_input)
-        self.submit_records = ctk.CTkButton(self.second_container, state="disabled", text="Submit Records and Save to JSON", command=self.return_records)
+        self.add_date = ctk.CTkButton(self, state="disabled", text="Add Date", command=self.add_date_input)
+        self.add_category = ctk.CTkButton(self, state="disabled", text="Add Category", command=self.add_category_input)
+        self.add_description = ctk.CTkButton(self, state="disabled", text="Add Description", command=self.add_description_input)
+        self.add_amount = ctk.CTkButton(self, state="disabled", text="Add Amount", command=self.add_amount_input)
+        self.submit_records = ctk.CTkButton(self, state="disabled", text="Submit Records and Save to JSON", command=self.return_records)
 
         # customization by configuration of widgets for second container
-        self.second_container.configure(fg_color="#FF6500")
+        # self.second_container.configure(fg_color="#FF6500")
 
         self.add_date.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
         self.add_category.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
@@ -102,8 +36,8 @@ class Bottom_Frame(ctk.CTkFrame):
         self.submit_records.configure(fg_color="#003049", hover_color="#C40C0C", text_color_disabled="#f07167")
 
         # pack widgets of second container
-        self.record_label = ctk.CTkLabel(self.second_container, text="Add a Record", font=("Arial",20,"bold"))
-        ctk.CTkLabel(self.second_container, text="Joshua Caguimbal").place(relx=0.99, rely=1, anchor="se")
+        self.record_label = ctk.CTkLabel(self, text="Add a Record", font=("Arial",20,"bold"))
+        ctk.CTkLabel(self, text="Joshua Caguimbal").place(relx=0.99, rely=1, anchor="se")
 
         # place method for widgets
         self.entry_date.place(relx=0.15, rely=0.20)
@@ -117,15 +51,12 @@ class Bottom_Frame(ctk.CTkFrame):
         self.add_amount.place(relx=0.60, rely=0.50)
         self.submit_records.place(relx=0.30, rely=0.70)
 
-        # pack frame containers
-        self.first_container.pack(side="left", expand=True, fill="both")
-        self.second_container.pack(side="left", expand=True, fill="both")
+        # self.second_container.pack(side="left", expand=True, fill="both")
 
         # event binds
-        self.second_container.bind("<Button-1>", self.get_pos)
+        # self.second_container.bind("<Button-1>", self.get_pos)
 
-
-    # function that will allow widgets for adding records
+    # method that will allow widgets for adding records
     def add_record(self):
         self.button_record.configure(state="disabled")
 
@@ -154,21 +85,6 @@ class Bottom_Frame(ctk.CTkFrame):
 
         # final button for submitting is returned to normal
         self.submit_records.configure(state="normal")
-
-    # function that runs another function converted json contents to dataframe
-    def read_json_content(self):
-        data = dataframes()
-
-        # print to top label
-        self.top_frame.update_label(data)
-
-    # yet to be implemented function for opening mattplotlib
-    def data_analytics(self):
-        pass
-
-    # quits overall system running
-    def quit_app(self):
-        sys.exit()
 
     # entry and button for date records setting and validation
     def add_date_input(self):
@@ -200,7 +116,7 @@ class Bottom_Frame(ctk.CTkFrame):
             self.category = 'Expenses'
 
             # print to top label
-            self.top_frame.update_label(f"Category: {self.category} is recorded")
+            # self.top_frame.update_label(f"Category: {self.category} is recorded")
 
             self.entry_category.configure(state="disabled")
             self.add_category.configure(state="disabled")
@@ -208,7 +124,7 @@ class Bottom_Frame(ctk.CTkFrame):
             self.category = 'Income'
 
             # print to top label
-            self.top_frame.update_label(f"Category: {self.category} is recorded")
+            # self.top_frame.update_label(f"Category: {self.category} is recorded")
 
             self.entry_category.configure(state="disabled")
             self.add_category.configure(state="disabled")
@@ -222,7 +138,7 @@ class Bottom_Frame(ctk.CTkFrame):
             self.description = entry_description
 
             # print to top label
-            self.top_frame.update_label(f"Description: {self.description} is recorded")
+            # self.top_frame.update_label(f"Description: {self.description} is recorded")
 
             self.entry_description.configure(state="disabled")
             self.add_description.configure(state="disabled")
@@ -240,7 +156,7 @@ class Bottom_Frame(ctk.CTkFrame):
             self.amount = number_entry_amount
 
             # print to top label
-            self.top_frame.update_label(f"Amount: {self.amount} is recorded")
+            # self.top_frame.update_label(f"Amount: {self.amount} is recorded")
 
             self.entry_amount.configure(state="disabled")
             self.add_amount.configure(state="disabled")
@@ -258,8 +174,8 @@ class Bottom_Frame(ctk.CTkFrame):
 
         append_dict_to_json(record_dict)
         # print to top label
-        self.top_frame.update_label(
-            f"Records have been saved to JSON file\nDetails of the record:\nDate: {self.date}\nCategory: {self.category}\nDescription: {self.description}\nAmount: {self.amount}")
+        # self.top_frame.update_label(
+        #     f"Records have been saved to JSON file\nDetails of the record:\nDate: {self.date}\nCategory: {self.category}\nDescription: {self.description}\nAmount: {self.amount}")
 
         self.submit_records.configure(state="disabled")
 
@@ -271,3 +187,17 @@ class Bottom_Frame(ctk.CTkFrame):
         rely = event.y / self.winfo_height()
 
         print(f"{relx:.2f}, {rely:.2f}")
+
+if __name__ == "__main__":
+
+    def create_window():
+        add_record = Add_Records()
+
+    window = ctk.CTk()
+    window.geometry('600x400')
+    window.title('Multiple Windows')
+
+    button1 = ctk.CTkButton(window, text = 'Open Main Window', command = create_window)
+    button1.pack(expand = True)
+
+    window.mainloop()

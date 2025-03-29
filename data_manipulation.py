@@ -96,3 +96,4 @@ def graph_data():
 
     # show plot
     plt.show()
+
